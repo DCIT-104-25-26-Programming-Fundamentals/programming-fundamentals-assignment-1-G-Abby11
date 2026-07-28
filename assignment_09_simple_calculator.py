@@ -142,4 +142,4 @@ while True:
             symbol = "**"
 
         if result is None:
-            print("Error
+            print("Error: Cannot divide by zero.")
