@@ -55,3 +55,40 @@
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
 
+def print_single_table(number):
+    print(f"\nMultiplication Table for {number}:")
+    for i in range(1, 13):
+        result = number * i
+        print(f"{number}  x  {i:<2} =  {result}")
+
+
+def print_multiple_tables(n):
+    for i in range(1, n + 1):
+        print_single_table(i)
+        if i < n:
+            print("---------------------------")
+
+
+# --- Main Program ---
+print("Choose an option:")
+print("1. Single Multiplication Table")
+print("2. Multiple Tables (1 to N)")
+
+choice = input("Enter your choice (1 or 2): ")
+
+if choice == '1':
+    num_input = input("Enter a number: ")
+    num = int(num_input)
+    print_single_table(num)
+
+elif choice == '2':
+    n_input = input("Enter a number N: ")
+    n = int(n_input)
+    
+    if n <= 0:
+        print("Error: N must be a positive integer.")
+    else:
+        print_multiple_tables(n)
+
+else:
+    print("Invalid choice. Please enter 1 or 2.")
