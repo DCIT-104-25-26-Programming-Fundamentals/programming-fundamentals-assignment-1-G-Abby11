@@ -90,3 +90,75 @@
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
 
+students = []
+
+def add_student():
+    name = input("Student name: ")
+    sid = int(input("Student ID: "))
+    
+    num_scores = int(input("How many scores? "))
+    scores = []
+    for i in range(1, num_scores + 1):
+        score = float(input(f"Enter score {i}: "))
+        scores.append(score)
+    
+    student = {
+        "name": name,
+        "id": sid,
+        "scores": scores
+    }
+    students.append(student)
+    print(f'Student "{name}" added successfully.')
+
+def display_all():
+    if not students:
+        print("No student records found.")
+        return
+
+    print("-" * 50)
+    print(f"{'Name':<15} {'ID':<10} {'Scores':<15} {'Average':<10}")
+    print("-" * 50)
+    
+    for s in students:
+        avg = sum(s["scores"]) / len(s["scores"])
+        scores_str = ", ".join(map(str, s["scores"]))
+        print(f"{s['name']:<15} {s['id']:<10} {scores_str:<15} {avg:.2f}")
+    
+    print("-" * 50)
+
+def calculate_average():
+    search_id = int(input("Enter student ID: "))
+    
+    for s in students:
+        if s["id"] == search_id:
+            avg = sum(s["scores"]) / len(s["scores"])
+            print(f"{s['name']}'s average score: {avg:.2f}")
+            return
+            
+    print("Error: Student ID not found.")
+
+def show_menu():
+    print("\n================================")
+    print("     STUDENT RECORD SYSTEM MENU")
+    print("================================")
+    print("1. Add student")
+    print("2. Display all students")
+    print("3. Calculate average score")
+    print("4. Quit")
+
+# --- Main Program ---
+while True:
+    show_menu()
+    choice = input("Enter your choice (1-4): ")
+
+    if choice == '1':
+        add_student()
+    elif choice == '2':
+        display_all()
+    elif choice == '3':
+        calculate_average()
+    elif choice == '4':
+        print("Goodbye!")
+        break
+    else:
+        print("Invalid choice. Please enter a number between 1 and 4.")
